@@ -41,8 +41,7 @@
 
 steps:
 - name: 'gcr.io/cloud-builders/git'
-entrypoint: 'bash'
-args: ['-c', 'echo "Starting build for release branch"']
+  entrypoint: 'bash'
 - name: 'gcr.io/cloud-builders/docker'
 args: ['build', '-t', 'gcr.io/$PROJECT_ID/automation-service', '.']
 - name: 'gcr.io/cloud-builders/docker'
