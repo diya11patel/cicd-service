@@ -53,3 +53,6 @@ steps:
 # args: ['push', 'gcr.io/$PROJECT_ID/automation-service']
 images:
 - 'gcr.io/$PROJECT_ID/automation-service'
+
+options:
+  logging: CLOUD_LOGGING_ONLY
