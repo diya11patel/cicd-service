@@ -41,10 +41,10 @@
 
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build','-t','gcr.io/${_PROJECT}/cicd:${_VERSION}','.']
+  args: ['build','-t','gcr.io/ver-1','.']
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push','gcr.io/${_PROJECT}/cicd:${_VERSION}']
+  args: ['push','gcr.io/ver-1']
 # - name: 'gcr.io/cloud-builders/git'
 #   entrypoint: 'bash'
 # - name: 'gcr.io/cloud-builders/docker'
