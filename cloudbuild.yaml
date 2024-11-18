@@ -21,17 +21,17 @@
 
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'us-central1(Iowa)-docker.pkg.dev/qwiklabs-gcp-00-7f0b0ac5adba/quiz/$COMMIT_SHA', '.']
+  args: ['build', '-t', 'us-central1-docker.pkg.dev/qwiklabs-gcp-00-7f0b0ac5adba/quiz/$COMMIT_SHA', '.']
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'us-central1(Iowa)-docker.pkg.dev/qwiklabs-gcp-00-7f0b0ac5adba/quiz/$COMMIT_SHA']
+  args: ['push', 'us-central1-docker.pkg.dev/qwiklabs-gcp-00-7f0b0ac5adba/quiz/$COMMIT_SHA']
 - name: "gcr.io/cloud-builders/gke-deploy"
   args:
   - run
   - --filename=deployment.yaml
-  - --image=us-central1(Iowa).pkg.dev/qwiklabs-gcp-00-7f0b0ac5adba/quiz:$COMMIT_SHA
-  - --location=us-central1(Iowa)
+  - --image=us-central1.pkg.dev/qwiklabs-gcp-00-7f0b0ac5adba/quiz:$COMMIT_SHA
+  - --location=us-central1
   - --cluster='cluster-1'
-images: ['us-central1(Iowa)-docker.pkg.dev/qwiklabs-gcp-00-7f0b0ac5adba/quiz/$COMMIT_SHA']
+images: ['us-central1-docker.pkg.dev/qwiklabs-gcp-00-7f0b0ac5adba/quiz/$COMMIT_SHA']
 
 options:
   logging: CLOUD_LOGGING_ONLY
