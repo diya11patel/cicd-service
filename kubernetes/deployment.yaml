@@ -29,13 +29,13 @@ spec:
     spec:
       containers:
       - name: quiz-app
-        image: us-west1.pkg.dev/qwiklabs-gcp-04-1fd93e1489d6/quiz:v1
+        image: us-central1.pkg.dev/qwiklabs-gcp-01-a842bcfdca8b/quiz:v1
         imagePullPolicy: Always
         ports:
         - name: http-server
           containerPort: 8080
         env:
           - name: GCLOUD_PROJECT
-            value: qwiklabs-gcp-04-1fd93e1489d6
+            value: qwiklabs-gcp-01-a842bcfdca8b
           - name: GCLOUD_BUCKET
-            value: qwiklabs-gcp-04-1fd93e1489d6-media
+            value: qwiklabs-gcp-01-a842bcfdca8b-media

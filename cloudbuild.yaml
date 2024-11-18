@@ -56,16 +56,16 @@ steps:
 #   - 'CLOUDSDK_COMPUTE_ZONE=${_ZONE}'
 #   - 'CLOUDSDK_CONTAINER_CLUSTER=${_GKE_CLUSTER}'
   
-images: ['us-west1-docker.pkg.dev/${_PROJECT}1/quiz/${_VERSION}']
+images: ['us-central1-docker.pkg.dev/${_PROJECT}1/quiz/${_VERSION}']
 
 substitutions:
-    _ZONE: us-west1-a
-    _GKE_CLUSTER: cluster-2
+    _ZONE: us-central1
+    _GKE_CLUSTER: cluster-1
     _DEPLOYMENTNAME: deployment.yaml
     _CONTAINERNAME: quiz-app
 #     _REPO_NAME: cicd-service
     
-    _PROJECT: qwiklabs-gcp-04-1fd93e1489d6
+    _PROJECT: qwiklabs-gcp-01-a842bcfdca8b
     _VERSION: v1.0
     
 options:
