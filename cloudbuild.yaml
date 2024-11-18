@@ -27,6 +27,13 @@ steps:
 images: ['us-east4-docker.pkg.dev/qwiklabs-gcp-01-ec2fbed32c6e/quiz/$COMMIT_SHA']
 # images:
 # - 'gcr.io/$PROJECT_ID/automation-service'
-
+# deploy container image to  GKE
+- name: "gcr.io/cloud-builders/gke-deploy"
+  args:
+  - run
+  - --filename=deployment.yaml
+  - --image=us-east4.pkg.dev/qwiklabs-gcp-01-ec2fbed32c6e/quiz:$COMMIT_SHA
+  - --location=us-east4
+  - --cluster='cluster-1'
 options:
   logging: CLOUD_LOGGING_ONLY
