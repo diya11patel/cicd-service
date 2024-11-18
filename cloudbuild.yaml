@@ -26,7 +26,7 @@ steps:
   # push the image to artifact registry
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', '${_ZONE}-docker.pkg.dev/${_PROJECT}/quiz/${_VERSION}']
-  # deploy container image to  GKE
+  # deploy container image to  GKE 
 - name: "gcr.io/cloud-builders/gcloud"
   args:
   - 'set'
