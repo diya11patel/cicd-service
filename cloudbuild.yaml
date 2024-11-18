@@ -1,19 +1,32 @@
+# steps:
+# - name: 'gcr.io/cloud-builders/docker'
+#   args: ['build', '-t', 'us-east4.pkg.dev/qwiklabs-gcp-01-ec2fbed32c6e/quiz:${COMMIT_SHA}', '.']
+# # deploy container image to GKE
+# - name: 'gcr.io/cloud-builders/docker'
+#   args: ['push', 'us-east4.pkg.dev/qwiklabs-gcp-01-ec2fbed32c6e/quiz:${COMMIT_SHA}']
+# images: ['us-east4.pkg.dev/qwiklabs-gcp-01-ec2fbed32c6e/quiz:${COMMIT_SHA}']
+
+# # deploy container image to  GKE
+# # - name: "gcr.io/cloud-builders/gke-deploy"
+# #   args:
+# #   - run
+# #   - --filename=deployment.yaml
+# #   - --image=us-east4.pkg.dev/qwiklabs-gcp-01-ec2fbed32c6e/quiz:$COMMIT_SHA
+# #   - --location=us-east4
+# #   - --cluster='cluster-1'
+
+# options:
+#   logging: CLOUD_LOGGING_ONLY
+
+
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'us-east4.pkg.dev/qwiklabs-gcp-01-ec2fbed32c6e/quiz:${COMMIT_SHA}', '.']
-# deploy container image to GKE
+  args: ['build', '-t', 'us-central1-docker.pkg.dev/qwiklabs-gcp-02-fcb22d0ba793/test/ver-1', '.']
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'us-east4.pkg.dev/qwiklabs-gcp-01-ec2fbed32c6e/quiz:${COMMIT_SHA}']
-images: ['us-east4.pkg.dev/qwiklabs-gcp-01-ec2fbed32c6e/quiz:${COMMIT_SHA}']
-
-# deploy container image to  GKE
-# - name: "gcr.io/cloud-builders/gke-deploy"
-#   args:
-#   - run
-#   - --filename=deployment.yaml
-#   - --image=us-east4.pkg.dev/qwiklabs-gcp-01-ec2fbed32c6e/quiz:$COMMIT_SHA
-#   - --location=us-east4
-#   - --cluster='cluster-1'
+  args: ['push', 'us-central1-docker.pkg.dev/qwiklabs-gcp-02-fcb22d0ba793/test/ver-1']
+images: ['us-central1-docker.pkg.dev/qwiklabs-gcp-02-fcb22d0ba793/test/ver-1']
+# images:
+# - 'gcr.io/$PROJECT_ID/automation-service'
 
 options:
   logging: CLOUD_LOGGING_ONLY
