@@ -1,22 +1,19 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', '${_CLOUDSDK_COMPUTE_ZONE}.pkg.dev/qwiklabs-gcp-01-ec2fbed32c6e/quiz:${COMMIT_SHA}', '.']
+  args: ['build', '-t', 'us-east4.pkg.dev/qwiklabs-gcp-01-ec2fbed32c6e/quiz:${COMMIT_SHA}', '.']
 # deploy container image to GKE
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', '${_CLOUDSDK_COMPUTE_ZONE}.pkg.dev/qwiklabs-gcp-01-ec2fbed32c6e/quiz:${COMMIT_SHA}']
-images: ['${_CLOUDSDK_COMPUTE_ZONE}.pkg.dev/qwiklabs-gcp-01-ec2fbed32c6e/quiz:${COMMIT_SHA}']
+  args: ['push', 'us-east4.pkg.dev/qwiklabs-gcp-01-ec2fbed32c6e/quiz:${COMMIT_SHA}']
+images: ['us-east4.pkg.dev/qwiklabs-gcp-01-ec2fbed32c6e/quiz:${COMMIT_SHA}']
 
 # deploy container image to  GKE
 # - name: "gcr.io/cloud-builders/gke-deploy"
 #   args:
 #   - run
 #   - --filename=deployment.yaml
-#   - --image=${_CLOUDSDK_COMPUTE_ZONE}.pkg.dev/qwiklabs-gcp-01-ec2fbed32c6e/quiz:$COMMIT_SHA
-#   - --location=${_CLOUDSDK_COMPUTE_ZONE}
+#   - --image=us-east4.pkg.dev/qwiklabs-gcp-01-ec2fbed32c6e/quiz:$COMMIT_SHA
+#   - --location=us-east4
 #   - --cluster='cluster-1'
 
 options:
   logging: CLOUD_LOGGING_ONLY
-
-sustitutions:
-  _CLOUDSDK_COMPUTE_ZONE: 'us-east4'
