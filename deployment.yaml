@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
       - name: quiz-frontend
-        image: us-east4.pkg.dev/qwiklabs-gcp-00-7f0b0ac5adba/quiz:$COMMIT_SHA
+        image: us-central1.pkg.dev/qwiklabs-gcp-00-7f0b0ac5adba/quiz:$COMMIT_SHA
         imagePullPolicy: Always
         ports:
         - name: http-server
