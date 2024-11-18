@@ -1,59 +1,19 @@
-# steps:
-# #First Clone from Google Cloud Source Repository  
-# # - name: 'gcr.io/cloud-builders/git'
-# #   args: ['clone','https://source.developers.google.com/p/${_PROJECT}/r/${_REPO_NAME}']
-
-# #Build the image 
-# - name: 'gcr.io/cloud-builders/docker'
-#   args: ['build','-t','gcr.io/${_PROJECT}/cicd:${_VERSION}','.']
-
-# #Push the image  
-# - name: 'gcr.io/cloud-builders/docker'
-#   args: ['push','gcr.io/${_PROJECT}/cicd:${_VERSION}']
-  
-# #Update the container image using kubectl set
-# # - name: 'gcr.io/cloud-builders/kubectl'
-# #   args:
-# #   - 'set'
-# #   - 'image'
-# #   - 'deployment/${_DEPLOYMENTNAME}'
-# #   - '${_CONTAINERNAME}=gcr.io/${_PROJECT}/${_CONTAINERNAME}:${_VERSION}'
-# #   env:
-# #   - 'CLOUDSDK_COMPUTE_ZONE=${_ZONE}'
-# #   - 'CLOUDSDK_CONTAINER_CLUSTER=${_GKE_CLUSTER}'
-  
-# substitutions:
-#     # #GCP Specific configuration. Please DON'T change anything
-#     _PROJECT: qwiklabs-gcp-02-fcb22d0ba793
-#     _ZONE: asia-south1-a
-#     # _GKE_CLUSTER: learn-gcp-with-mahesh-gke-cluster
-    
-#     # #Repository Specific configuration. DevOps can change this settings
-#     # _DEPLOYMENTNAME: hello-world-service
-#     # _CONTAINERNAME: hello-world-service    
-#     _REPO_NAME: cicd-service
-    
-#     # Developers ONLY change
-#     _VERSION: v1.0
-    
-# options:
-#     substitution_option: 'ALLOW_LOOSE'
-
-# steps:
-# - name: 'gcr.io/cloud-builders/docker'
-#   args: ['build','-t','gcr.io/ver-1','.']
-
-# - name: 'gcr.io/cloud-builders/docker'
-#   args: ['push','gcr.io/ver-1']
-# - name: 'gcr.io/cloud-builders/git'
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'us-central1-docker.pkg.dev/qwiklabs-gcp-02-fcb22d0ba793/test/ver-1', '.']
+  args: ['build', '-t', '${_CLOUDSDK_COMPUTE_ZONE}.pkg.dev/qwiklabs-gcp-01-ec2fbed32c6e/quiz:$COMMIT_SHA'', '.']
+# deploy container image to GKE
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'us-central1-docker.pkg.dev/qwiklabs-gcp-02-fcb22d0ba793/test/ver-1']
-images: ['us-central1-docker.pkg.dev/qwiklabs-gcp-02-fcb22d0ba793/test/ver-1']
-# images:
-# - 'gcr.io/$PROJECT_ID/automation-service'
+  args: ['push', '${_CLOUDSDK_COMPUTE_ZONE}.pkg.dev/qwiklabs-gcp-01-ec2fbed32c6e/quiz:$COMMIT_SHA']
+images: ['${_CLOUDSDK_COMPUTE_ZONE}.pkg.dev/qwiklabs-gcp-01-ec2fbed32c6e/quiz:$COMMIT_SHA']
+
+# deploy container image to GKE
+- name: "gcr.io/cloud-builders/gke-deploy"
+  args:
+  - run
+  - --filename=deployment.yaml
+  - --image=${_CLOUDSDK_COMPUTE_ZONE}.pkg.dev/qwiklabs-gcp-01-ec2fbed32c6e/quiz:$COMMIT_SHA
+  - --location=${_CLOUDSDK_COMPUTE_ZONE}
+  - --cluster='cluster-1'
 
 options:
   logging: CLOUD_LOGGING_ONLY
