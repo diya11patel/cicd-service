@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
       - name: quiz-app
-        image: us-central1.pkg.dev/qwiklabs-gcp-01-a842bcfdca8b/quiz:v1
+        image: us-central1.pkg.dev/qwiklabs-gcp-01-a842bcfdca8b/quiz:v1-a
         imagePullPolicy: Always
         ports:
         - name: http-server
