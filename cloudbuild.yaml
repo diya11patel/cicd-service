@@ -59,7 +59,7 @@ steps:
 images: ['us-west1-docker.pkg.dev/${_PROJECT}1/quiz/${_VERSION}']
 
 substitutions:
-    _ZONE: us-west1
+    _ZONE: us-west1-a
     _GKE_CLUSTER: cluster-2
     _DEPLOYMENTNAME: deployment.yaml
     _CONTAINERNAME: quiz-app
