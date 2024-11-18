@@ -20,18 +20,51 @@
 
 
 steps:
+# build the image
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'us-west1-docker.pkg.dev/qwiklabs-gcp-03-33784ec14891/quiz/verion1', '.']
+  args: ['build', '-t', 'us-west1-docker.pkg.dev/qwiklabs-gcp-03-33784ec14891/quiz/${_VERSION}', '.']
+  # push the image to artifact registry
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'us-west1-docker.pkg.dev/qwiklabs-gcp-03-33784ec14891/quiz/verion1']
-- name: "gcr.io/cloud-builders/gke-deploy"
-  args:
-  - run
-  - --filename=deployment.yaml
-  - --image=us-west1.pkg.dev/qwiklabs-gcp-03-33784ec14891/quiz:verion1
-  - --location=us-west1
-  - --cluster='cluster-1'
-images: ['us-west1-docker.pkg.dev/qwiklabs-gcp-03-33784ec14891/quiz/verion1']
+  args: ['push', 'us-west1-docker.pkg.dev/qwiklabs-gcp-03-33784ec14891/quiz/${_VERSION}']
+  # deploy container image to  GKE
+# - name: "gcr.io/cloud-builders/gke-deploy"
+#   args:
+#   - run
+#   - --filename=deployment.yaml
+#   - --image=us-west1.pkg.dev/qwiklabs-gcp-03-33784ec14891/quiz:${_VERSION}
+#   - --location=us-west1
+#   - --cluster='cluster-1'
 
+
+
+#Update the container image using kubectl set
+- name: 'gcr.io/cloud-builders/kubectl'
+  args:
+  - 'set'
+  - 'image'
+  - 'deployment/${_DEPLOYMENTNAME}'
+  - '${_CONTAINERNAME}=gcr.io/${_PROJECT}/${_CONTAINERNAME}:${_VERSION}'
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=${_ZONE}'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=${_GKE_CLUSTER}'
+  
+images: ['us-west1-docker.pkg.dev/qwiklabs-gcp-03-33784ec14891/quiz/${_VERSION}']
+
+substitutions:
+    #GCP Specific configuration. Please DON'T change anything
+    _PROJECT: qwiklabs-gcp-00-7f0b0ac5adba
+    _ZONE: us-west1
+    _GKE_CLUSTER: cluster-1
+    
+    #Repository Specific configuration. DevOps can change this settings
+    _DEPLOYMENTNAME: deployment.yaml
+    _CONTAINERNAME: quiz-frontend
+    _REPO_NAME: cicd-service
+    
+    # Developers ONLY change
+    _VERSION: v1.0
+    
 options:
-  logging: CLOUD_LOGGING_ONLY
+    substitution_option: 'ALLOW_LOOSE'
+    logging: CLOUD_LOGGING_ONLY
+
