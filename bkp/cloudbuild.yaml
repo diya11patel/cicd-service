@@ -22,27 +22,20 @@
 steps:
 # build the image
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', '${_ZONE}-docker.pkg.dev/${_PROJECT}/quiz/${_VERSION}', '.']
+  args: ['build', '-t', 'us-west1-docker.pkg.dev/qwiklabs-gcp-03-33784ec14891/quiz/${_VERSION}', '.']
   # push the image to artifact registry
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', '${_ZONE}-docker.pkg.dev/${_PROJECT}/quiz/${_VERSION}']
+  args: ['push', 'us-west1-docker.pkg.dev/qwiklabs-gcp-03-33784ec14891/quiz/${_VERSION}']
   # deploy container image to  GKE
 - name: "gcr.io/cloud-builders/gcloud"
   args:
-  - 'set'
-  - 'image'
-  - '${_DEPLOYMENTNAME}'
-  - '${_CONTAINERNAME}=${_ZONE}-docker.pkg.dev/${_PROJECT}/quiz/${_VERSION}'
-  env:
-  - 'CLOUDSDK_COMPUTE_ZONE=${_ZONE}'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=${_GKE_CLUSTER}'
-  # - run
-  # - deploy
-  # - quiz-frontend
-  # # - --filename=deployment.yaml
-  # - --image=${_ZONE}.pkg.dev/${_PROJECT}/quiz:${_VERSION}
-  # - --location=${_ZONE}
-  # - --cluster='cluster-1'
+  - run
+  - deploy
+  - quiz-frontend
+  # - --filename=deployment.yaml
+  - --image=us-west1.pkg.dev/qwiklabs-gcp-03-33784ec14891/quiz:${_VERSION}
+  - --location=us-west1
+  - --cluster='cluster-1'
 
 
 
@@ -61,15 +54,16 @@ steps:
 
 substitutions:
 #     #GCP Specific configuration. Please DON'T change anything
-    _ZONE: us-west1
-    _GKE_CLUSTER: cluster-1
+#     _PROJECT: qwiklabs-gcp-00-7f0b0ac5adba
+#     _ZONE: us-west1
+#     _GKE_CLUSTER: cluster-1
     
 #     #Repository Specific configuration. DevOps can change this settings
-    _DEPLOYMENTNAME: deployment.yaml
-    _CONTAINERNAME: quiz-frontend
+#     _DEPLOYMENTNAME: deployment.yaml
+#     _CONTAINERNAME: quiz-frontend
 #     _REPO_NAME: cicd-service
     
-    _PROJECT: qwiklabs-gcp-00-7f0b0ac5adba
+    # Developers ONLY change
     _VERSION: v1.0
     
 options:
