@@ -69,7 +69,7 @@ substitutions:
     _CONTAINERNAME: quiz-frontend
 #     _REPO_NAME: cicd-service
     
-    _PROJECT: qwiklabs-gcp-00-7f0b0ac5adba
+    _PROJECT: qwiklabs-gcp-04-1fd93e1489d6
     _VERSION: v1.0
     
 options:
