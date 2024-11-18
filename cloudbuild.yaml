@@ -11,7 +11,7 @@
 # #   args:
 # #   - run
 # #   - --filename=deployment.yaml
-# #   - --image=us-central1.pkg.dev/qwiklabs-gcp-01-ec2fbed32c6e/quiz:$COMMIT_SHA
+# #   - --image=us-central1.pkg.dev/qwiklabs-gcp-01-ec2fbed32c6e/quiz:verion1
 # #   - --location=us-central1
 # #   - --cluster='cluster-1'
 
@@ -21,17 +21,17 @@
 
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'us-west1-docker.pkg.dev/qwiklabs-gcp-03-33784ec14891/quiz/$COMMIT_SHA', '.']
+  args: ['build', '-t', 'us-west1-docker.pkg.dev/qwiklabs-gcp-03-33784ec14891/quiz/verion1', '.']
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'us-west1-docker.pkg.dev/qwiklabs-gcp-03-33784ec14891/quiz/$COMMIT_SHA']
+  args: ['push', 'us-west1-docker.pkg.dev/qwiklabs-gcp-03-33784ec14891/quiz/verion1']
 - name: "gcr.io/cloud-builders/gke-deploy"
   args:
   - run
   - --filename=deployment.yaml
-  - --image=us-west1.pkg.dev/qwiklabs-gcp-03-33784ec14891/quiz:$COMMIT_SHA
+  - --image=us-west1.pkg.dev/qwiklabs-gcp-03-33784ec14891/quiz:verion1
   - --location=us-west1
   - --cluster='cluster-1'
-images: ['us-west1-docker.pkg.dev/qwiklabs-gcp-03-33784ec14891/quiz/$COMMIT_SHA']
+images: ['us-west1-docker.pkg.dev/qwiklabs-gcp-03-33784ec14891/quiz/verion1']
 
 options:
   logging: CLOUD_LOGGING_ONLY
