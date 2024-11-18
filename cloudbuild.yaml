@@ -21,17 +21,17 @@
 
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'us-east4-docker.pkg.dev/qwiklabs-gcp-01-ec2fbed32c6e/quiz/$COMMIT_SHA', '.']
+  args: ['build', '-t', 'us-east4-docker.pkg.dev/qwiklabs-gcp-00-7f0b0ac5adba/quiz/$COMMIT_SHA', '.']
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'us-east4-docker.pkg.dev/qwiklabs-gcp-01-ec2fbed32c6e/quiz/$COMMIT_SHA']
+  args: ['push', 'us-east4-docker.pkg.dev/qwiklabs-gcp-00-7f0b0ac5adba/quiz/$COMMIT_SHA']
 - name: "gcr.io/cloud-builders/gke-deploy"
   args:
   - run
   - --filename=deployment.yaml
-  - --image=us-east4.pkg.dev/qwiklabs-gcp-01-ec2fbed32c6e/quiz:$COMMIT_SHA
+  - --image=us-east4.pkg.dev/qwiklabs-gcp-00-7f0b0ac5adba/quiz:$COMMIT_SHA
   - --location=us-east4
   - --cluster='cluster-1'
-images: ['us-east4-docker.pkg.dev/qwiklabs-gcp-01-ec2fbed32c6e/quiz/$COMMIT_SHA']
+images: ['us-east4-docker.pkg.dev/qwiklabs-gcp-00-7f0b0ac5adba/quiz/$COMMIT_SHA']
 
 options:
   logging: CLOUD_LOGGING_ONLY

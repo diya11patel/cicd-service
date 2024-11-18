@@ -31,13 +31,13 @@ spec:
     spec:
       containers:
       - name: quiz-frontend
-        image: ${_CLOUDSDK_COMPUTE_ZONE}.pkg.dev/qwiklabs-gcp-01-ec2fbed32c6e/quiz:$COMMIT_SHA
+        image: ${_CLOUDSDK_COMPUTE_ZONE}.pkg.dev/qwiklabs-gcp-00-7f0b0ac5adba/quiz:$COMMIT_SHA
         imagePullPolicy: Always
         ports:
         - name: http-server
           containerPort: 8080
         env:
           - name: GCLOUD_PROJECT
-            value: qwiklabs-gcp-01-ec2fbed32c6e
+            value: qwiklabs-gcp-00-7f0b0ac5adba
           - name: GCLOUD_BUCKET
-            value: qwiklabs-gcp-01-ec2fbed32c6e-media
+            value: qwiklabs-gcp-00-7f0b0ac5adba-media
