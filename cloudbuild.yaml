@@ -16,7 +16,7 @@
 # #   - --cluster='cluster-1'
 
 # options:
-#   logging: CLOUD_LOGGING_ONLY
+#   logging: CLOUD_LOGGING_ONLY 
 
 
 steps:
