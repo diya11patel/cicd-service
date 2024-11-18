@@ -18,26 +18,24 @@ metadata:
   labels:
     app: quiz-app
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: quiz-app
-      tier: frontend
   template:
     metadata:
       labels:
         app: quiz-app
-        tier: frontend
     spec:
       containers:
-      - name: quiz-frontend
-        image: us-central1.pkg.dev/qwiklabs-gcp-00-7f0b0ac5adba/quiz:verion1
+      - name: quiz-app
+        image: us-west1.pkg.dev/qwiklabs-gcp-04-1fd93e1489d6/quiz:v1
         imagePullPolicy: Always
         ports:
         - name: http-server
           containerPort: 8080
         env:
           - name: GCLOUD_PROJECT
-            value: qwiklabs-gcp-00-7f0b0ac5adba
+            value: qwiklabs-gcp-04-1fd93e1489d6
           - name: GCLOUD_BUCKET
-            value: qwiklabs-gcp-00-7f0b0ac5adba-media
+            value: qwiklabs-gcp-04-1fd93e1489d6-media

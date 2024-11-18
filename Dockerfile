@@ -1,4 +1,7 @@
-FROM node:12.6.0-alpine
+FROM python:3.9-slim
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+COPY app.py .
 EXPOSE 8080
-COPY server.js .
-CMD node server.js
+CMD ["python", "app.py"]
