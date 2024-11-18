@@ -17,3 +17,6 @@ images: ['${_CLOUDSDK_COMPUTE_ZONE}.pkg.dev/qwiklabs-gcp-01-ec2fbed32c6e/quiz:${
 
 options:
   logging: CLOUD_LOGGING_ONLY
+
+sustitutions:
+  _CLOUDSDK_COMPUTE_ZONE: 'us-east4'
