@@ -1,6 +1,6 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', '${_CLOUDSDK_COMPUTE_ZONE}.pkg.dev/qwiklabs-gcp-01-ec2fbed32c6e/quiz:$COMMIT_SHA'', '.']
+  args: ['build', '-t', '${_CLOUDSDK_COMPUTE_ZONE}.pkg.dev/qwiklabs-gcp-01-ec2fbed32c6e/quiz:$COMMIT_SHA', '.']
 # deploy container image to GKE
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', '${_CLOUDSDK_COMPUTE_ZONE}.pkg.dev/qwiklabs-gcp-01-ec2fbed32c6e/quiz:$COMMIT_SHA']
