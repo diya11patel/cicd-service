@@ -21,10 +21,10 @@
 
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'us-central1-docker.pkg.dev/qwiklabs-gcp-01-ec2fbed32c6e/images/ver-1', '.']
+  args: ['build', '-t', 'us-east4-docker.pkg.dev/qwiklabs-gcp-01-ec2fbed32c6e/quiz/ver-1', '.']
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'us-central1-docker.pkg.dev/qwiklabs-gcp-01-ec2fbed32c6e/images/ver-1']
-images: ['us-central1-docker.pkg.dev/qwiklabs-gcp-01-ec2fbed32c6e/images/ver-1']
+  args: ['push', 'us-east4-docker.pkg.dev/qwiklabs-gcp-01-ec2fbed32c6e/quiz/ver-1']
+images: ['us-east4-docker.pkg.dev/qwiklabs-gcp-01-ec2fbed32c6e/quiz/ver-1']
 # images:
 # - 'gcr.io/$PROJECT_ID/automation-service'
 
